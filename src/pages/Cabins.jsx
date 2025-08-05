@@ -4,6 +4,7 @@ import Row from "../ui/Row";
 import React, { useEffect } from "react";
 
 function Cabins() {
+  // hi
   useEffect(function(){
     getCabins().then(cabins => console.log(cabins));
   }, []);
