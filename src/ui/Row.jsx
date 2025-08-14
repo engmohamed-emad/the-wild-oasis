@@ -9,25 +9,22 @@ const Row = styled.div`
     switch (props.type) {
       case 'horizontal':
         return css`
-          flex-direction: row;
           justify-content: space-between;
           align-items: center;
         `;
       case 'vertical':
         return css`
           flex-direction: column;
-          gap: 16px;
-          align-items: flex-start;
+          gap: 1.6rem;
         `;
       default:
         return css`
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+           flex-direction: column;
+          gap: 1.6rem;
         `;
     }
   }}
-  gap: 16px;
+
 `;
 
 
