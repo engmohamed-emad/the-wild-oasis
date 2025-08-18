@@ -70,27 +70,31 @@ function CabinRow({ cabin }) {
       <Price>{regularPrice} €</Price>
       <Discount>{discount ? `${discount}%` : "No discount"}</Discount>
       <div>
+      <button onClick={handleDuplicate} disabled={isDuplicating}><HiSquare2Stack/></button>
       <Modal>
+        <Modal.Open opens='cabin-edit-form'>
+          <button><HiPencil/></button>
+        </Modal.Open>
+        <Modal.Window name="cabin-edit-form">
+          <CreateCabinForm cabinToEdit={cabin} />
+        </Modal.Window>
+        <Modal.Open opens='cabin-delete-confirm'>
+          <button><HiTrash/></button>
+        </Modal.Open>
+        <Modal.Window name="cabin-delete-confirm">
+          <ConfirmDelete onConfirm={() => deleteCabin(id)} resourceName={name} disabled={isDeleting}/>
+        </Modal.Window>
+      </Modal>
+      <Menus>
       <Menus.Menu>
-         <Menus.Toggle id={id}/>
-         <Menus.List id={id}>  
-           <Menus.Button icon={<HiSquare2Stack/>} onClick={handleDuplicate}>Duplicate {name}</Menus.Button>
-           <Modal.Open opens='cabin-edit-form'>
-               <Menus.Button icon={<HiPencil/>}>Edit {name}</Menus.Button>
-           </Modal.Open>
-           <Modal.Open opens='cabin-delete-confirm'>
-             <Menus.Button icon={<HiTrash/>}>Delete {name}</Menus.Button>
-           </Modal.Open>
-           </Menus.List>
-          <Modal.Window name="cabin-edit-form">
-              <CreateCabinForm cabinToEdit={cabin} />
-           </Modal.Window>
-           <Modal.Window name="cabin-delete-confirm">
-             <ConfirmDelete onConfirm={() => deleteCabin(id)} resourceName={name} disabled={isDeleting}/>
-           </Modal.Window>
+        <Menus.Toggle id={id}/>
+          <Menus.List id={id}>
+            <Menus.Button icon={<HiSquare2Stack/>} onClick={handleDuplicate}>Duplicate {name}</Menus.Button>
+            <Menus.Button icon={<HiPencil/>}>Edit {name}</Menus.Button>
+            <Menus.Button icon={<HiTrash/>}>Delete {name}</Menus.Button>
+          </Menus.List>
       </Menus.Menu>
-
-      </Modal>  
+      </Menus>
      </div>
     </Table.Row>
    
