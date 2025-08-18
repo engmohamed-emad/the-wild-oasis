@@ -61,6 +61,7 @@ function CabinRow({ cabin }) {
       description: description ? description : ""
     })
   }
+  //kg
   return (
     <>
       <Table.Row role='row'>
